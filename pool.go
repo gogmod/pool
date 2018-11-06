@@ -153,6 +153,7 @@ func (self *calssic) incAuto() error {
     return nil
 }
 
+//删除资源
 func del(src Src) {
     src.Release()
     self.Lock()
@@ -160,6 +161,7 @@ func del(src Src) {
     self.Unlock()
 }
 
+//恢复/重置
 func (self *classic) recover(src Src) {
     self.RLock()
     defer self.RUnlock()
@@ -170,6 +172,7 @@ func (self *classic) recover(src Src) {
     self.srcs <- src
 }
 
+//资源是否被释放
 func (self *classic) isReleased() bool {
     self.RLock()
     defer self.RUnlock()
